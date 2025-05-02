@@ -56,28 +56,31 @@
     <div class="spinner"></div>
   </div>
   
-  <script>
-    async function main() {
-      try {
-        await liff.init({ liffId: "2007093093-dZqGeVyQ" });
-        await liff.ready;
-if (!liff.isLoggedIn()) {
-  liff.login();
-  return;
-}
+<script>
+  async function main() {
+    try {
+      await liff.init({ liffId: "2007093093-dZqGeVyQ" });
+      await liff.ready;
 
-        const profile = await liff.getProfile();
-        const uid = profile.userId;
-        const target = "https://forms.katchme.life/t/6EXns14Xt6us?id=GYN-39";
-        window.location.href = ${target}&kexid=${uid};
-
-
-      } catch (e) {
-        document.querySelector('.loading-container').innerHTML = "<p>初始化失敗：" + e.message + "</p>";
-        console.error(e);
+      if (!liff.isLoggedIn()) {
+        liff.login();
+        return;
       }
+
+      const profile = await liff.getProfile();
+      const uid = profile.userId;
+      const target = "https://forms.katchme.life/t/6EXns14Xt6us?id=GYN-39";
+
+      // ✅ 用反引號包住整個字串，才會正確插入變數
+      window.location.href = `${target}&kexid=${uid}`;
+
+    } catch (e) {
+      document.querySelector('.loading-container').innerHTML = "<p>初始化失敗：" + e.message + "</p>";
+      console.error(e);
     }
-    main();
-  </script>
+  }
+  main();
+</script>
+
 </body>
 </html>
