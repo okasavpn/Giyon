@@ -66,10 +66,11 @@ if (!liff.isLoggedIn()) {
   return;
 }
 
-        const profile = await liff.getProfile();
-        const uid = profile.userId;
-        const target = "https://forms.katchme.life/t/6EXns14Xt6us?id=GYN-39";
-        window.location.href = `${target}?kexid=${uid}`;
+const targetUrl = new URL("https://forms.katchme.life/t/6EXns14Xt6us");
+targetUrl.searchParams.set("id", "GYN-39");
+targetUrl.searchParams.set("kexid", uid);
+window.location.href = targetUrl.toString();
+
       } catch (e) {
         document.querySelector('.loading-container').innerHTML = "<p>初始化失敗：" + e.message + "</p>";
         console.error(e);
