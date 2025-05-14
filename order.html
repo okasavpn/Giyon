@@ -70,15 +70,7 @@
         const target = "https://forms.katchme.life/t/n48m98G9mYus?id=GYN-49";
         window.location.href = `${target}&kexid=${uid}`;      
 
-      // ✅ 使用 LIFF 的 openWindow ➜ 強制在 Safari / Chrome 開啟
-      liff.openWindow({
-        url: filloutUrl,
-        external: true
-      });
 
-      setTimeout(() => {
-        liff.closeWindow();
-      }, 1000); // 半秒後關閉 LIFF
  
     } catch (e) {
       document.querySelector('.loading-container').innerHTML = "<p>初始化失敗：" + e.message + "</p>";
