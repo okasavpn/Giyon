@@ -5,13 +5,14 @@
   <title>Redirecting...</title>
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Open Graph 預覽 -->
-  <meta property="og:title" content="訂單">
-  <meta property="og:description" content="點擊此連結填寫需求">
-  <meta property="og:url" content="https://liff.line.me/2007093093-LRwynoDe">
+  
+  <!-- Open Graph 元標籤 -->
+  <meta property="og:title" content="下單連結">
+  <meta property="og:description" content="點擊此連結直接訂購">
+  <meta property="og:url" content="https://liff.line.me/2007093093-JY7w6YmN">
   <meta property="og:type" content="website">
-
+  
+  <!-- 頁面樣式 -->
   <style>
     body {
       font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -36,7 +37,7 @@
     }
     .spinner {
       border: 4px solid #f3f3f3;
-      border-top: 4px solid #06C755;
+      border-top: 4px solid #06C755; /* Line綠色 */
       border-radius: 50%;
       width: 30px;
       height: 30px;
@@ -54,33 +55,27 @@
     <div class="loading-text">正在登入與重定向...</div>
     <div class="spinner"></div>
   </div>
+  
+  <script>
+    async function main() {
+      try {
+        await liff.init({ liffId: "2007093093-JY7w6YmN" });
+        await liff.ready;
+if (!liff.isLoggedIn()) {
+  liff.login();
+  return;
+}
 
-<script>
-  async function main() {
-    try {
-      await liff.init({ liffId: "2007093093-LRwynoDe" });
-      await liff.ready;
-
-      if (!liff.isLoggedIn()) {
-        liff.login();
-        return;
-      }
         const profile = await liff.getProfile();
         const uid = profile.userId;
-        const target = "https://forms.katchme.life/t/n48m98G9mYus?id=GYN-49";
-        window.location.href = `${target}&kexid=${uid}`;      
-
-
- 
-    } catch (e) {
-      document.querySelector('.loading-container').innerHTML = "<p>初始化失敗：" + e.message + "</p>";
-      console.error(e);
+        const target = "https://forms.katchme.life/t/xxhkvufXMBus";
+        window.location.href = `${target}?kexid=${uid}`;
+      } catch (e) {
+        document.querySelector('.loading-container').innerHTML = "<p>初始化失敗：" + e.message + "</p>";
+        console.error(e);
+      }
     }
-  }
-
-  main();
-</script>
-
-
+    main();
+  </script>
 </body>
 </html>
