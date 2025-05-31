@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <!-- Open Graph 元標籤 -->
-  <meta property="og:title" content="下單連結">
-  <meta property="og:description" content="點擊此連結直接訂購">
+  <meta property="og:title" content="身份確認專用">
+  <meta property="og:description" content="點擊此連結完成註冊">
   <meta property="og:url" content="https://liff.line.me/2007093093-KBAVboJN">
   <meta property="og:type" content="website">
   
@@ -70,6 +70,17 @@ if (!liff.isLoggedIn()) {
         const uid = profile.userId;
         const target = "https://forms.katchme.life/t/xqsqc4HEesus";
         window.location.href = `${target}?kexid=${uid}`;
+
+      // ✅ 使用 LIFF 的 openWindow ➜ 強制在 Safari / Chrome 開啟
+      liff.openWindow({
+        url: ragicUrl,
+        external: true
+      });
+
+            setTimeout(() => {
+        liff.closeWindow();
+      }, 1000); // 半秒後關閉 LIFF
+        
       } catch (e) {
         document.querySelector('.loading-container').innerHTML = "<p>初始化失敗：" + e.message + "</p>";
         console.error(e);
